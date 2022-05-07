@@ -52,3 +52,14 @@ module "membership_logged_in_object_id" {
   group_object_id  = can(var.group_id) ? var.group_id : var.azuread_groups[try(var.settings.group_lz_key, var.client_config.landingzone_key)][var.group_key].id
   member_object_id = var.client_config.object_id
 }
+
+
+module "membership_aks_clusters" {
+  source   = "./membership"
+  for_each = try(var.settings.aks_clusters, {})
+
+  aks_clusters  = var.aks_clusters[try(each.value.lz_key, var.client_config.landingzone_key)]
+  members       = each.value
+
+  group_object_id = var.azuread_groups[try(each.value.group_lz_key, var.client_config.landingzone_key)][var.group_key].id
+}

@@ -43,4 +43,5 @@ module "azuread_groups_membership" {
   azuread_service_principals = local.combined_objects_azuread_service_principals
   managed_identities         = local.combined_objects_managed_identities
   mssql_servers              = local.combined_objects_mssql_servers
+  aks_clusters               = local.combined_objects_aks_clusters
 }

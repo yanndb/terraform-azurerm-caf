@@ -14,3 +14,7 @@ variable "members" {
 variable "mssql_servers" {
   default = {}
 }
+
+variable "aks_clusters" {
+  default = {}
+}
